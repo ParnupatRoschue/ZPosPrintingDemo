@@ -437,21 +437,44 @@ public class DemoListActivity extends ActionBarActivity
             }
         }
 
+        BackgroundPrintZPP bgprint;
+        boolean bgprinting = false;
+
         private void demoPrintForm(View v) {
             BillCalculator billCalc = new BillCalculator(123456.78);
             RecordCommentNew commNew = new RecordCommentNew() {
                 @Override
                 public void sentFinish() {
                     super.sentFinish();
+
+                    bgprinting = false;
+                    try {
+                        Log.info(bgprint.get());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
                 public void sentFail() {
                     super.sentFail();
+                    bgprinting = false;
+                    try {
+                        Log.info(bgprint.get());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             };
+            if (bgprinting) {
+            }
             Record record = new Record(Calendar.getInstance());
-            BackgroundPrintZPP bgprint = new BackgroundPrintZPP(getActivity(), billCalc, commNew);
+            bgprint = new BackgroundPrintZPP(getActivity(), billCalc, commNew);
             bgprint.setArrPersonalData(new Personal("จดหน่วย-แจ้งค่าไฟฟ้าโดย บริษัทตัวsแทน", "01-234-5678"));
             bgprint.setRec(record);
             ArrayList<MeterHistory> histories = new ArrayList<>();
@@ -471,21 +494,11 @@ public class DemoListActivity extends ActionBarActivity
             receipts.add(new ReceiptData("1234567890123456", record.getReadDate(), date));
             bgprint.setRD(receipts);
             String result = "";
-            try {
-                // Print to device DPP-450-R
-                bgprint.execute("DPP-450R", "DemoPrintForm");
-                // For testing print out to bitmap in cache
+            // Print to device DPP-450-R
+            bgprint.execute("DPP-450R", "DemoPrintForm");
+            // For testing print out to bitmap in cache
 //                bgprint.execute("ZPosPrinterTest", "DemoPrintForm");
-//                while (bgprint.getStatus() == AsyncTask.Status.RUNNING) {
-//                    SystemUtil.sleep(100);
-//                }
-                result = bgprint.get();
-                Log.info("Printed: " + result);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+            bgprinting = true;
         }
 
     }

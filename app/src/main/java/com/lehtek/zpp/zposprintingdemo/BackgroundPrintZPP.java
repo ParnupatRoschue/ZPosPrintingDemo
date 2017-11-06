@@ -261,6 +261,7 @@ public class BackgroundPrintZPP extends AsyncTask<String, Integer, String> {
                     ++line;
                 }
                 result = print(lineBegin, line, pageNo, pageTot);
+                if (result != null) break;
                 if (pageNo < pageTot) ++pageNo;
             }
         }
