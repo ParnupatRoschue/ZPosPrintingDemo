@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ZPosPrintingDemo</string>
+
+    <string name="title_demo_print_document">Demo. Print Document</string>
+    <string name="title_demo_print_form">Demo Print Form</string>
+    <string name="title_demo_bitmap">Demo Show Bitmap Output</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="demo_print_doc_button_text">Demo Print Doc.</string>
+    <string name="demo_print_form_button_text">Demo Print Form</string>
+</resources>

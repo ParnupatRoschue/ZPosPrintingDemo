@@ -1,0 +1,4 @@
+Sharpen
+
+java -jar sharpencore-0.0.1-SNAPSHOT-jar-with-dependencies.jar ZPosPrinting/zposprinting/src/zpp/java @sharpen-all-options -cp /data/Android/android-sdk/platforms/android-22/android.jar
+2>stderr
